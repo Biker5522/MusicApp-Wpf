@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicApp.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace MusicApp.ViewModel
 
         public CreateAlbumViewModel()
         {
-
+            SubmitCommand = new CreateAlbumCommand(this);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MusicApp.ViewModel
 
         public MainViewModel()
         {
-            CurrentViewModel = new AlbumListViewModel();
+            CurrentViewModel = new CreateAlbumViewModel();
         }
     }
 }
