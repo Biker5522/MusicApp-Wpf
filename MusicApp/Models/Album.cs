@@ -9,11 +9,20 @@ namespace MusicApp
 {
     public class Album
     {
-        private int Id { get; set; }
-        public string Name { get; set; }
-        public string Band { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string BandId { get; set; }
         public int Year { get; set; }
         public ImageSource Cover { get; set; }
+
+        public Album(string title, string bandId, int year)
+        {
+            Id = 0;
+            Title = title;
+            BandId = bandId;
+            Year = year;
+
+        }
 
     }
 }

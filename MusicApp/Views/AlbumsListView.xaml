@@ -21,27 +21,24 @@
             <TextBlock Grid.Column="0"
                        FontSize="24"
                        Text="View Albums"/>
-            <Button Grid.Column="1" Margin="10 0 100 0" Content="Create Album"/>
+            <Button Grid.Column="1" Margin="10 0 100 0" Content="Create Album" Command="{Binding CreateAlbumCommand}"/>
         </Grid>
 
-        <ListView Grid.Row="1" Margin="0 25 0 0">
-            <ListViewItem></ListViewItem>
-            <ListViewItem></ListViewItem>
-            <ListViewItem></ListViewItem>
-            <ListViewItem></ListViewItem>
+        <ListView Grid.Row="1" Margin="0 25 0 0" ItemsSource="{Binding Albums}" >
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Album id">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="12"/>
+                                <TextBlock Text="{Binding Id}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Album Name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="12"/>
+                                <TextBlock Text="{Binding Title}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -49,7 +46,7 @@
                     <GridViewColumn Header="Band">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="12"/>
+                                <TextBlock Text="{Binding BandId}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -57,7 +54,7 @@
                     <GridViewColumn Header="Year">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="12"/>
+                                <TextBlock Text="{Binding Year}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

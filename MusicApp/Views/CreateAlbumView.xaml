@@ -20,20 +20,22 @@
             FontSize="24"
             Text="Make Album"/>
 
+        <!-- Album name -->
         <Grid Grid.Row="1" Margin="20 10 200 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-
             <TextBlock Grid.Row="0" Text="Name"/>
             <TextBox
             Grid.Row="1"
             FontSize="24"
             Margin="0 5 0 0"
+               Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
             />
         </Grid>
 
+        <!-- Album Band -->
         <Grid Grid.Row="2" Margin="20 10 200 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -45,9 +47,11 @@
             Grid.Row="1"
             FontSize="24"
             Margin="0 5 0 0"
+                Text="{Binding BandId, UpdateSourceTrigger=PropertyChanged}"
            />
         </Grid>
 
+        <!-- Album Year -->
         <Grid Grid.Row="3" Margin="20 10 200 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -59,9 +63,11 @@
             Grid.Row="1"
             FontSize="24"
             Margin="0 5 0 0"
+                Text="{Binding Year, UpdateSourceTrigger=PropertyChanged}"
            />
         </Grid>
 
+        <!-- Album Cover -->
         <Grid Grid.Row="4" Margin="20 10 200 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -76,9 +82,10 @@
            />
         </Grid>
 
+        <!-- Buttons -->
         <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="20 10 200 0">
-            <Button Content="Create"></Button>
-            <Button Margin="5 0 0 0" Content="Cancel"></Button>
+            <Button Content="Create" Command="{Binding SubmitCommand}"></Button>
+            <Button Margin="5 0 0 0" Content="Cancel" Command="{Binding CancelCommand}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

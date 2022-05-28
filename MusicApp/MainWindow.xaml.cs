@@ -23,6 +23,7 @@ namespace MusicApp
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }
