@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MusicApp.Commands;
+using MusicApp.Services;
+using MusicApp.Stores;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,9 +16,10 @@ namespace MusicApp.ViewModel
         private readonly ObservableCollection<AlbumViewModel> _albums;
         public IEnumerable<AlbumViewModel> Albums => _albums;
         public ICommand CreateAlbumCommand { get; }
-        public AlbumListViewModel()
+        public AlbumListViewModel(NavigationService createAlbumNavigationService)
         {
             _albums = new ObservableCollection<AlbumViewModel>();
+            CreateAlbumCommand = new NavigateCommand(createAlbumNavigationService);
             _albums.Add(new AlbumViewModel(new Album("MODE DE VIE", "POD MOSTEM", 2019)));
             _albums.Add(new AlbumViewModel(new Album("Antagonista", "POD MOSTEM", 2015)));
         }

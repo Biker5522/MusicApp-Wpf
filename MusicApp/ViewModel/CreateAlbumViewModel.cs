@@ -1,4 +1,6 @@
 ﻿using MusicApp.Commands;
+using MusicApp.Services;
+using MusicApp.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +40,10 @@ namespace MusicApp.ViewModel
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public CreateAlbumViewModel()
+        public CreateAlbumViewModel(NavigationService albumViewNavigationService)
         {
-            SubmitCommand = new CreateAlbumCommand(this);
+            SubmitCommand = new CreateAlbumCommand(this, albumViewNavigationService);
+            CancelCommand = new NavigateCommand(albumViewNavigationService);
         }
     }
 }

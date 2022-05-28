@@ -3,10 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MusicApp" xmlns:views="clr-namespace:MusicApp.Views"
+        xmlns:local="clr-namespace:MusicApp"
+        xmlns:views="clr-namespace:MusicApp.Views"
+        xmlns:vms="clr-namespace:MusicApp.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="400" MaxWidth="600">
     <Grid>
-        <views:CreateAlbumView DataContext="{Binding CurrentViewModel}"/>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:CreateAlbumViewModel}">
+                <views:CreateAlbumView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:AlbumListViewModel}">
+                <views:ListAlbumsView/>
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using MusicApp.ViewModel;
+﻿using MusicApp.Services;
+using MusicApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace MusicApp.Commands
     internal class CreateAlbumCommand : CommandBase
     {
         private readonly CreateAlbumViewModel _createAlbumViewModel;
-        public CreateAlbumCommand(CreateAlbumViewModel createAlbumViewModel)
+        private readonly NavigationService _albumViewNavigationService;
+        public CreateAlbumCommand(CreateAlbumViewModel createAlbumViewModel, NavigationService _albumViewNavigationService)
         {
             _createAlbumViewModel = createAlbumViewModel;
         }
@@ -18,11 +20,16 @@ namespace MusicApp.Commands
 
         public override void Execute(object parameter)
         {
+
             Album album = new Album(
                 _createAlbumViewModel.Title,
                 _createAlbumViewModel.BandId,
                 _createAlbumViewModel.Year
             );
+
+            _albumViewNavigationService.Navigate();
+
+
         }
     }
 }
