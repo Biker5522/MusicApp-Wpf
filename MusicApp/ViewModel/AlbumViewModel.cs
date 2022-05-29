@@ -9,7 +9,6 @@ namespace MusicApp.ViewModel
     public class AlbumViewModel : ViewModelBase
     {
         private readonly Album _album;
-        public int Id => _album.Id;
         public string Title => _album.Title;
         public string BandId => _album.BandId;
         public int Year => _album.Year;

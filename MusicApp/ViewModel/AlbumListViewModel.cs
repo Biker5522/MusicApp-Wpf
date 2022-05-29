@@ -19,7 +19,7 @@ namespace MusicApp.ViewModel
         public AlbumListViewModel(NavigationService createAlbumNavigationService)
         {
             _albums = new ObservableCollection<AlbumViewModel>();
-            CreateAlbumCommand = new NavigateCommand(createAlbumNavigationService);
+            CreateAlbumCommand = new NavigateCommand<CreateAlbumCommand>(createAlbumNavigationService);
             _albums.Add(new AlbumViewModel(new Album("MODE DE VIE", "POD MOSTEM", 2019)));
             _albums.Add(new AlbumViewModel(new Album("Antagonista", "POD MOSTEM", 2015)));
         }
