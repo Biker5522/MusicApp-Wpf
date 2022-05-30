@@ -16,12 +16,25 @@ namespace MusicApp.ViewModel
         private readonly ObservableCollection<AlbumViewModel> _albums;
         public IEnumerable<AlbumViewModel> Albums => _albums;
         public ICommand CreateAlbumCommand { get; }
+        public ICommand LoadAlbumsCommand { get; }
         public AlbumListViewModel(NavigationService createAlbumNavigationService)
         {
             _albums = new ObservableCollection<AlbumViewModel>();
+            LoadAlbumsCommand = new LoadAlbumsCommand(this);
+
             CreateAlbumCommand = new NavigateCommand<CreateAlbumCommand>(createAlbumNavigationService);
-            _albums.Add(new AlbumViewModel(new Album("MODE DE VIE", "POD MOSTEM", 2019)));
-            _albums.Add(new AlbumViewModel(new Album("Antagonista", "POD MOSTEM", 2015)));
+
+        }
+        public static AlbumListViewModel ListViewModel(NavigationService createAlbumNavigationService)
+        {
+            AlbumListViewModel viewModel = new AlbumListViewModel(createAlbumNavigationService);
+            viewModel.LoadAlbumsCommand.Execute(null);
+            return viewModel;
+        }
+
+        private void UpdateAlbums()
+        {
+            _albums.Clear();
         }
     }
 }

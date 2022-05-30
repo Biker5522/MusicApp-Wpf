@@ -43,7 +43,7 @@ namespace MusicApp.ViewModel
         public CreateAlbumViewModel(NavigationService albumViewNavigationService)
         {
             SubmitCommand = new CreateAlbumCommand(this, albumViewNavigationService);
-            CancelCommand = new NavigateCommand(albumViewNavigationService);
+            CancelCommand = new NavigateCommand<CreateAlbumCommand>(albumViewNavigationService);
         }
     }
 }

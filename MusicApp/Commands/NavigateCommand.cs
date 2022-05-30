@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MusicApp.Commands
 {
-    public class NavigateCommand<TViewModel> : CommandBase
+    public class NavigateCommand<TGeneric> : CommandBase
     {
         private readonly NavigationService _navigationService;
         public NavigateCommand(NavigationService navigationService)

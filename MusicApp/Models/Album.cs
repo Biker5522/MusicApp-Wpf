@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace MusicApp
 {
     public class Album
     {
+        private readonly AlbumBook _albumBook;
         public string Title { get; set; }
         public string BandId { get; set; }
         public int Year { get; set; }
@@ -19,6 +21,10 @@ namespace MusicApp
             BandId = bandId;
             Year = year;
 
+        }
+        public async Task MakeAlbum(Album album)
+        {
+            await _albumBook.AddAlbum(album);
         }
 
     }

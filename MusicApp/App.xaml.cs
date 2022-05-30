@@ -1,4 +1,7 @@
-﻿using MusicApp.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicApp.DbContexts;
+using MusicApp.Models;
+using MusicApp.Services;
 using MusicApp.Stores;
 using MusicApp.ViewModel;
 using System;
@@ -16,13 +19,25 @@ namespace MusicApp
     /// </summary>
     public partial class App : Application
     {
+        private const string CONNECTION_STRING = "Data Source = musicApp.db";
         private readonly NavigationStore _navigationStore;
+        private readonly MusicAppDbContextFactory _musicAppDbContextFactory;
         public App()
         {
+            _musicAppDbContextFactory = new MusicAppDbContextFactory(CONNECTION_STRING);
+            IAlbumProvider albumProvider = new DatabaseAlbumProvider(_musicAppDbContextFactory);
+            IAlbumCreator albumCreator = new DatabaseAlbumCreator(_musicAppDbContextFactory);
+            AlbumBook albumBook = new AlbumBook(albumProvider, albumCreator);
             _navigationStore = new NavigationStore();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
+            DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(CONNECTION_STRING).Options;
+            using (MusicAppDbContext dbContext = _musicAppDbContextFactory.CreateDbContext())
+            {
+                dbContext.Database.Migrate();
+            }
+
             _navigationStore.CurrentViewModel = CreateAlbumViewModel();
             MainWindow = new MainWindow()
             {
