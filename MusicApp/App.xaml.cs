@@ -21,13 +21,15 @@ namespace MusicApp
     {
         private const string CONNECTION_STRING = "Data Source = musicApp.db";
         private readonly NavigationStore _navigationStore;
+        private readonly AlbumStore _albumStore;
         private readonly MusicAppDbContextFactory _musicAppDbContextFactory;
         public App()
         {
             _musicAppDbContextFactory = new MusicAppDbContextFactory(CONNECTION_STRING);
-            IAlbumProvider albumProvider = new DatabaseAlbumProvider(_musicAppDbContextFactory);
-            IAlbumCreator albumCreator = new DatabaseAlbumCreator(_musicAppDbContextFactory);
+            IAlbumProvider albumProvider = new AlbumProvider(_musicAppDbContextFactory);
+            IAlbumCreator albumCreator = new AlbumCreator(_musicAppDbContextFactory);
             AlbumBook albumBook = new AlbumBook(albumProvider, albumCreator);
+            _albumStore = new AlbumStore(albumBook);
             _navigationStore = new NavigationStore();
         }
         protected override void OnStartup(StartupEventArgs e)
@@ -48,12 +50,12 @@ namespace MusicApp
         }
         private CreateAlbumViewModel CreateCreateAlbumViewModel()
         {
-            return new CreateAlbumViewModel(new NavigationService(_navigationStore, CreateAlbumViewModel));
+            return new CreateAlbumViewModel(new NavigationService<AlbumListViewModel>(_navigationStore, CreateAlbumViewModel), _albumStore);
         }
 
         private AlbumListViewModel CreateAlbumViewModel()
         {
-            return new AlbumListViewModel(new NavigationService(_navigationStore, CreateCreateAlbumViewModel));
+            return AlbumListViewModel.ListViewModel(new NavigationService<CreateAlbumViewModel>(_navigationStore, CreateCreateAlbumViewModel), _albumStore);
         }
     }
 }

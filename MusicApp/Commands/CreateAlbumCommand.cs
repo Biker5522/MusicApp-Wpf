@@ -1,4 +1,6 @@
-﻿using MusicApp.Services;
+﻿using MusicApp.Models;
+using MusicApp.Services;
+using MusicApp.Stores;
 using MusicApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -12,11 +14,11 @@ namespace MusicApp.Commands
     internal class CreateAlbumCommand : AsyncCommandBase
     {
         private readonly CreateAlbumViewModel _createAlbumViewModel;
-        private readonly Album _album;
-        private readonly NavigationService _albumViewNavigationService;
-        public CreateAlbumCommand(CreateAlbumViewModel createAlbumViewModel, NavigationService _albumViewNavigationService)
+        private readonly AlbumStore _albumStore;
+        public CreateAlbumCommand(CreateAlbumViewModel createAlbumViewModel, AlbumStore albumStore)
         {
             _createAlbumViewModel = createAlbumViewModel;
+            _albumStore = albumStore;
         }
 
 
@@ -30,10 +32,10 @@ namespace MusicApp.Commands
              );
             try
             {
-                await _album.MakeAlbum(album);
-                _albumViewNavigationService.Navigate();
+                await _albumStore.AddAlbum(album);
+                MessageBox.Show("Successfuly added new worker.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Fail", "Error", MessageBoxButton.OK);
             }

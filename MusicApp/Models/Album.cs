@@ -10,7 +10,6 @@ namespace MusicApp
 {
     public class Album
     {
-        private readonly AlbumBook _albumBook;
         public string Title { get; set; }
         public string BandId { get; set; }
         public int Year { get; set; }
@@ -22,10 +21,5 @@ namespace MusicApp
             Year = year;
 
         }
-        public async Task MakeAlbum(Album album)
-        {
-            await _albumBook.AddAlbum(album);
-        }
-
     }
 }

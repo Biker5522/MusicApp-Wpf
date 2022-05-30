@@ -67,20 +67,7 @@
            />
         </Grid>
 
-        <!-- Album Cover -->
-        <Grid Grid.Row="4" Margin="20 10 200 0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Cover"/>
-            <TextBox
-            Grid.Row="1"
-            FontSize="24"
-            Margin="0 5 0 0"
-           />
-        </Grid>
 
         <!-- Buttons -->
         <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="20 10 200 0">

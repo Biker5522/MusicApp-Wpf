@@ -28,13 +28,6 @@
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Album id">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Id}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                     <GridViewColumn Header="Album Name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

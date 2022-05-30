@@ -17,24 +17,31 @@ namespace MusicApp.ViewModel
         public IEnumerable<AlbumViewModel> Albums => _albums;
         public ICommand CreateAlbumCommand { get; }
         public ICommand LoadAlbumsCommand { get; }
-        public AlbumListViewModel(NavigationService createAlbumNavigationService)
+        public AlbumListViewModel(NavigationService<CreateAlbumViewModel> createAlbumNavigationService, AlbumStore albumStore)
         {
             _albums = new ObservableCollection<AlbumViewModel>();
-            LoadAlbumsCommand = new LoadAlbumsCommand(this);
+            LoadAlbumsCommand = new LoadAlbumsCommand(this, albumStore);
 
-            CreateAlbumCommand = new NavigateCommand<CreateAlbumCommand>(createAlbumNavigationService);
+            CreateAlbumCommand = new NavigateCommand<CreateAlbumViewModel>(createAlbumNavigationService);
 
         }
-        public static AlbumListViewModel ListViewModel(NavigationService createAlbumNavigationService)
+        public static AlbumListViewModel ListViewModel(NavigationService<CreateAlbumViewModel> createAlbumNavigationService, AlbumStore albumStore)
         {
-            AlbumListViewModel viewModel = new AlbumListViewModel(createAlbumNavigationService);
+            AlbumListViewModel viewModel = new AlbumListViewModel(createAlbumNavigationService, albumStore);
             viewModel.LoadAlbumsCommand.Execute(null);
             return viewModel;
         }
 
-        private void UpdateAlbums()
+        public void UpdateAlbums(IEnumerable<Album> albums)
         {
             _albums.Clear();
+
+            foreach (Album album in albums)
+            {
+                AlbumViewModel albumViewModel = new AlbumViewModel(album);
+
+                _albums.Add(albumViewModel);
+            }
         }
     }
 }
