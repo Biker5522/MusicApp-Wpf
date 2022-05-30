@@ -22,10 +22,10 @@
             <Button Content="Bands" Command="{Binding BandCommand}"></Button>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20 10 200 0">
-            <Button Content="Genres" Command="{Binding GenresCommand}"></Button>
+            <Button Content="Genres" Command="{Binding GenreCommand}"></Button>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="20 10 200 0">
-            <Button Content="Songs" Command="{Binding SongsCommand}"></Button>
+            <Button Content="Songs" Command="{Binding SongCommand}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

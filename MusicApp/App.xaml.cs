@@ -40,7 +40,7 @@ namespace MusicApp
                 dbContext.Database.Migrate();
             }
 
-            _navigationStore.CurrentViewModel = CreateAlbumViewModel();
+            _navigationStore.CurrentViewModel = CreateMainViewModel();
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)
@@ -55,7 +55,15 @@ namespace MusicApp
 
         private AlbumListViewModel CreateAlbumViewModel()
         {
-            return AlbumListViewModel.ListViewModel(new NavigationService<CreateAlbumViewModel>(_navigationStore, CreateCreateAlbumViewModel), _albumStore);
+            return AlbumListViewModel.ListViewModel(new NavigationService<CreateAlbumViewModel>(_navigationStore, CreateCreateAlbumViewModel), _albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+        }
+        private MainMenuViewModel CreateMainViewModel()
+        {
+            return new MainMenuViewModel(new NavigationService<AlbumListViewModel>(_navigationStore, CreateAlbumViewModel), new NavigationService<BandListViewModel>(_navigationStore, CreateBandViewModel));
+        }
+        private BandListViewModel CreateBandViewModel()
+        {
+            return BandListViewModel.ListViewModel(_albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
         }
     }
 }
