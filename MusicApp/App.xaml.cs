@@ -59,11 +59,19 @@ namespace MusicApp
         }
         private MainMenuViewModel CreateMainViewModel()
         {
-            return new MainMenuViewModel(new NavigationService<AlbumListViewModel>(_navigationStore, CreateAlbumViewModel), new NavigationService<BandListViewModel>(_navigationStore, CreateBandViewModel));
+            return new MainMenuViewModel(new NavigationService<AlbumListViewModel>(_navigationStore, CreateAlbumViewModel), new NavigationService<BandListViewModel>(_navigationStore, CreateBandViewModel), new NavigationService<SongsListViewModel>(_navigationStore, CreateSongViewModel), new NavigationService<GenreListViewModel>(_navigationStore, CreateGenreViewModel));
         }
         private BandListViewModel CreateBandViewModel()
         {
             return BandListViewModel.ListViewModel(_albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+        }
+        private SongsListViewModel CreateSongViewModel()
+        {
+            return SongsListViewModel.ListViewModel(_albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+        }
+        private GenreListViewModel CreateGenreViewModel()
+        {
+            return GenreListViewModel.ListViewModel(_albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
         }
     }
 }

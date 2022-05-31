@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace MusicApp.Views
 {
     /// <summary>
-    /// Interaction logic for SongsListView.xaml
+    /// Interaction logic for GenreListView.xaml
     /// </summary>
-    public partial class SongsListView : UserControl
+    public partial class GenreListView : UserControl
     {
-        public SongsListView()
+        public GenreListView()
         {
             InitializeComponent();
         }
-
     }
 }
