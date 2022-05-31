@@ -1,5 +1,4 @@
 ﻿using MusicApp.Models;
-using MusicApp.Services;
 using MusicApp.Stores;
 using MusicApp.ViewModel;
 using System;
@@ -11,28 +10,25 @@ using System.Windows;
 
 namespace MusicApp.Commands
 {
-    internal class CreateAlbumCommand : AsyncCommandBase
+    public class CreateBandCommand : AsyncCommandBase
     {
-        private readonly CreateAlbumViewModel _createAlbumViewModel;
+        private readonly CreateBandViewModel _createBandViewModel;
         private readonly AlbumStore _albumStore;
-        public CreateAlbumCommand(CreateAlbumViewModel createAlbumViewModel, AlbumStore albumStore)
+        public CreateBandCommand(CreateBandViewModel createAlbumViewModel, AlbumStore albumStore)
         {
-            _createAlbumViewModel = createAlbumViewModel;
+            _createBandViewModel = createAlbumViewModel;
             _albumStore = albumStore;
         }
 
-
         public override async Task ExecuteAsync(object parameter)
         {
-
-            Album album = new Album(
-                 _createAlbumViewModel.Title,
-                 _createAlbumViewModel.BandId,
-                 _createAlbumViewModel.Year
+            Band Band = new Band(
+                 _createBandViewModel.Name,
+                 _createBandViewModel.Year
              );
             try
             {
-                await _albumStore.AddAlbum(album);
+                await _albumStore.AddBand(Band);
                 MessageBox.Show("Successfuly added new worker.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)

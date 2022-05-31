@@ -25,7 +25,7 @@
             <Button Grid.Column="1" Margin="91,0,19,0" Content="Menu" Command="{Binding BackCommand}"/>
         </Grid>
 
-        <ListView Grid.Row="1" Margin="0 25 0 0" ItemsSource="{Binding Albums}" >
+        <ListView Grid.Row="1" Margin="0 25 0 0" ItemsSource="{Binding Bands}" >
 
             <ListView.View>
                 <GridView>

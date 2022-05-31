@@ -42,7 +42,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Band"/>
+            <TextBlock Grid.Row="0" Text="Year"/>
             <TextBox
             Grid.Row="1"
             FontSize="24"

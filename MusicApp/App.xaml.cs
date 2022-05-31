@@ -28,7 +28,10 @@ namespace MusicApp
             _musicAppDbContextFactory = new MusicAppDbContextFactory(CONNECTION_STRING);
             IAlbumProvider albumProvider = new AlbumProvider(_musicAppDbContextFactory);
             IAlbumCreator albumCreator = new AlbumCreator(_musicAppDbContextFactory);
-            AlbumBook albumBook = new AlbumBook(albumProvider, albumCreator);
+            IBandProvider bandProvider = new BandProvider(_musicAppDbContextFactory);
+            IBandCreator bandCreator = new BandCreator(_musicAppDbContextFactory);
+
+            AlbumBook albumBook = new AlbumBook(albumProvider, albumCreator, bandProvider, bandCreator);
             _albumStore = new AlbumStore(albumBook);
             _navigationStore = new NavigationStore();
         }
@@ -48,22 +51,29 @@ namespace MusicApp
             MainWindow.Show();
             base.OnStartup(e);
         }
+        //Band navigation
         private CreateAlbumViewModel CreateCreateAlbumViewModel()
         {
             return new CreateAlbumViewModel(new NavigationService<AlbumListViewModel>(_navigationStore, CreateAlbumViewModel), _albumStore);
         }
-
         private AlbumListViewModel CreateAlbumViewModel()
         {
             return AlbumListViewModel.ListViewModel(new NavigationService<CreateAlbumViewModel>(_navigationStore, CreateCreateAlbumViewModel), _albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
         }
+        //Menu navigation
         private MainMenuViewModel CreateMainViewModel()
         {
             return new MainMenuViewModel(new NavigationService<AlbumListViewModel>(_navigationStore, CreateAlbumViewModel), new NavigationService<BandListViewModel>(_navigationStore, CreateBandViewModel), new NavigationService<SongsListViewModel>(_navigationStore, CreateSongViewModel), new NavigationService<GenreListViewModel>(_navigationStore, CreateGenreViewModel));
         }
         private BandListViewModel CreateBandViewModel()
         {
-            return BandListViewModel.ListViewModel(_albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+            return BandListViewModel.ListViewModel(new NavigationService<CreateBandViewModel>(_navigationStore, CreateCreateBandViewModel), _albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+        }
+
+        //Album navigation
+        private CreateBandViewModel CreateCreateBandViewModel()
+        {
+            return new CreateBandViewModel(new NavigationService<BandListViewModel>(_navigationStore, CreateBandViewModel), _albumStore);
         }
         private SongsListViewModel CreateSongViewModel()
         {

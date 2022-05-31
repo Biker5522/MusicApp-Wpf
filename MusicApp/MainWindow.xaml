@@ -16,9 +16,14 @@
             <DataTemplate DataType="{x:Type vms:AlbumListViewModel}">
                 <views:ListAlbumsView/>
             </DataTemplate>
+
             <DataTemplate DataType="{x:Type vms:BandListViewModel}">
                 <views:BandsListView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:CreateBandViewModel}">
+                <views:CreateBandView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type vms:SongsListViewModel}">
                 <views:SongsListView/>
             </DataTemplate>

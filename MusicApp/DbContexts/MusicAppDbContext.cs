@@ -15,5 +15,6 @@ namespace MusicApp.DbContexts
 
         }
         public DbSet<AlbumDTO> Albums { get; set; }
+        public DbSet<BandDTO> Bands { get; set; }
     }
 }
