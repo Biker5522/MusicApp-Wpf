@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MusicApp.Commands
 {
@@ -20,7 +21,16 @@ namespace MusicApp.Commands
         }
         public override async Task ExecuteAsync(object parameter)
         {
+            try
+            {
+                await _albumStore.Load();
 
+                _viewModel.UpdateSongs(_albumStore.Songs);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to load Genre.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

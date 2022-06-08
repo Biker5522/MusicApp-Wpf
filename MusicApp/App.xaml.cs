@@ -30,8 +30,12 @@ namespace MusicApp
             IAlbumCreator albumCreator = new AlbumCreator(_musicAppDbContextFactory);
             IBandProvider bandProvider = new BandProvider(_musicAppDbContextFactory);
             IBandCreator bandCreator = new BandCreator(_musicAppDbContextFactory);
+            IGenreProvider genreProvider = new GenreProvider(_musicAppDbContextFactory);
+            IGenreCreator genreCreator = new GenreCreator(_musicAppDbContextFactory);
+            ISongProvider songProvider = new SongProvider(_musicAppDbContextFactory);
+            ISongCreator songCreator = new SongCreator(_musicAppDbContextFactory);
 
-            AlbumBook albumBook = new AlbumBook(albumProvider, albumCreator, bandProvider, bandCreator);
+            AlbumBook albumBook = new AlbumBook(albumProvider, albumCreator, bandProvider, bandCreator,genreProvider,genreCreator,songProvider,songCreator);
             _albumStore = new AlbumStore(albumBook);
             _navigationStore = new NavigationStore();
         }
@@ -65,23 +69,33 @@ namespace MusicApp
         {
             return new MainMenuViewModel(new NavigationService<AlbumListViewModel>(_navigationStore, CreateAlbumViewModel), new NavigationService<BandListViewModel>(_navigationStore, CreateBandViewModel), new NavigationService<SongsListViewModel>(_navigationStore, CreateSongViewModel), new NavigationService<GenreListViewModel>(_navigationStore, CreateGenreViewModel));
         }
+        //Band navigation
         private BandListViewModel CreateBandViewModel()
         {
             return BandListViewModel.ListViewModel(new NavigationService<CreateBandViewModel>(_navigationStore, CreateCreateBandViewModel), _albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
         }
-
-        //Album navigation
         private CreateBandViewModel CreateCreateBandViewModel()
         {
             return new CreateBandViewModel(new NavigationService<BandListViewModel>(_navigationStore, CreateBandViewModel), _albumStore);
         }
+        //Song navigation
         private SongsListViewModel CreateSongViewModel()
         {
-            return SongsListViewModel.ListViewModel(_albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+            return SongsListViewModel.ListViewModel(new NavigationService<CreateSongViewModel>(_navigationStore, CreateCreateSongViewModel), _albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
         }
+        private CreateSongViewModel CreateCreateSongViewModel()
+        {
+            return new CreateSongViewModel(new NavigationService<SongsListViewModel>(_navigationStore, CreateSongViewModel), _albumStore);
+        }
+
+        //Genre navigation
         private GenreListViewModel CreateGenreViewModel()
         {
-            return GenreListViewModel.ListViewModel(_albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+            return GenreListViewModel.ListViewModel(new NavigationService<CreateGenreViewModel>(_navigationStore, CreateCreateGenreViewModel), _albumStore, new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainViewModel));
+        }
+        private CreateGenreViewModel CreateCreateGenreViewModel()
+        {
+            return new CreateGenreViewModel(new NavigationService<GenreListViewModel>(_navigationStore, CreateGenreViewModel), _albumStore);
         }
     }
 }

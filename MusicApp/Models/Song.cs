@@ -12,5 +12,17 @@ namespace MusicApp.Models
         public string BandId { get; set; }
         public int Year { get; set; }
         public string AlbumId { get; set; }
+        public string GenreId { get; set; }
+        public Song(string name, int year ,string bandId,string albumId, string genreId)
+        {
+            Name = name;
+            Year = year;
+            BandId = bandId;
+            GenreId = genreId;
+            AlbumId = albumId;
+
+        }
+
+       
     }
 }

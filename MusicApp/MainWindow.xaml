@@ -7,7 +7,8 @@
         xmlns:views="clr-namespace:MusicApp.Views"
         xmlns:vms="clr-namespace:MusicApp.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400" MaxWidth="600">
+        Title="MainWindow" Height="450" Width="400" MaxWidth="600"
+        >
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:CreateAlbumViewModel}">
@@ -27,9 +28,17 @@
             <DataTemplate DataType="{x:Type vms:SongsListViewModel}">
                 <views:SongsListView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:CreateSongViewModel}">
+                <views:CreateSongView/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type vms:GenreListViewModel}">
                 <views:GenreListView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:CreateGenreViewModel}">
+                <views:CreateGenreView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type vms:MainMenuViewModel}">
                 <views:MainView/>
             </DataTemplate>

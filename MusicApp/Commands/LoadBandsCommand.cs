@@ -29,7 +29,7 @@ namespace MusicApp.Commands
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to load album.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Failed to load Bands.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
