@@ -13,7 +13,6 @@ namespace MusicApp.Stores
         private readonly List<Band> _bands;
         private readonly List<Genre> _genres;
         private readonly List<Song> _songs;
-        private readonly Lazy<Task> _initializeLazy;
         private readonly AlbumBook _albumBook;
 
 
@@ -25,7 +24,6 @@ namespace MusicApp.Stores
         public AlbumStore(AlbumBook albumBook)
         {
             _albums = new List<Album>();
-            _initializeLazy = new Lazy<Task>(Initialize);
             _albumBook = albumBook;
             _bands = new List<Band>();
             _genres = new List<Genre>();
@@ -52,11 +50,6 @@ namespace MusicApp.Stores
 
         public async Task Load()
         {
-            await _initializeLazy.Value;
-        }
-
-        private async Task Initialize()
-        {
             IEnumerable<Album> albums = await _albumBook.GetAllAlbums();
             _albums.Clear();
             _albums.AddRange(albums);
@@ -73,5 +66,6 @@ namespace MusicApp.Stores
             _songs.Clear();
             _songs.AddRange(songs);
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using MusicApp.DbContexts;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicApp.DbContexts;
 using MusicApp.DTOs;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace MusicApp.Services
         }
         public async Task CreateAlbum(Album album)
         {
+            if (await AlbumValidator(album.BandId)) throw new Exception("zle");
+
             using (MusicAppDbContext context = _dbContextFactory.CreateDbContext())
             {
                 AlbumDTO albumDTO = ToAlbumDTO(album);
@@ -25,6 +28,18 @@ namespace MusicApp.Services
                 context.Albums.Add(albumDTO);
                 await context.SaveChangesAsync();
             }
+        }
+        private async Task<bool> AlbumValidator(string BandName)
+        {
+            using (MusicAppDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                BandDTO BandDTO = await context.Bands.Where(b => b.Name == BandName).FirstOrDefaultAsync();
+
+                if (BandDTO == null) return true;
+
+                return false;
+            }
+
         }
 
         private AlbumDTO ToAlbumDTO(Album album)
