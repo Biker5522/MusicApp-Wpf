@@ -20,7 +20,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
                        FontSize="24"
-                       Text="View Bands"/>
+                       ><Run Text="View "/><Run Language="pl-pl" Text="Genres"/></TextBlock>
             <Button Grid.Column="1" Margin="10 0 100 0" Content="Create Album" Command="{Binding CreateGenreCommand}"/>
             <Button Grid.Column="1" Margin="91,0,19,0" Content="Menu" Command="{Binding BackCommand}"/>
         </Grid>

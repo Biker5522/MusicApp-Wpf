@@ -28,7 +28,7 @@ namespace MusicApp.Commands
             try
             {
                 await _albumStore.AddGenre(Genre);
-                MessageBox.Show("Successfuly added new worker.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Successfuly added new Genre.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)
             {

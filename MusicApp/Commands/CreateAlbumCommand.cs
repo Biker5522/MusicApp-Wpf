@@ -33,7 +33,7 @@ namespace MusicApp.Commands
             try
             {
                 await _albumStore.AddAlbum(album);
-                MessageBox.Show("Successfuly added new worker.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Successfuly added new Album.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)
             {

@@ -19,7 +19,7 @@
         <TextBlock
             Grid.Row="0"
             FontSize="24"
-            Text="Create Band"/>
+            Text="Songs"/>
 
         <!-- Song name -->
         <Grid Grid.Row="1" Margin="20 10 200 0">

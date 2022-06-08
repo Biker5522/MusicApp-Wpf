@@ -29,7 +29,7 @@ namespace MusicApp.Commands
             try
             {
                 await _albumStore.AddBand(Band);
-                MessageBox.Show("Successfuly added new worker.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Successfuly added new Band.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)
             {
