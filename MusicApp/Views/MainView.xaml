@@ -14,16 +14,20 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <!-- Albums -->
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="160 50 100 10">
             <Button Content="Albums" Command="{Binding AlbumCommand}" Width="70" Height="46"/>
         </StackPanel>
+        <!-- Bands -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="160 10 100 10">
             <Button Content="Bands" Command="{Binding BandCommand}" Width="70" Height="47"></Button>
         </StackPanel>
+        <!-- Genres -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="160 10 100 10">
             <Button Content="Genres" Command="{Binding GenresCommand}" Width="70" Height="47"></Button>
         </StackPanel>
+        <!-- Songs -->
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="160 10 100 0">
             <Button Content="Songs" Command="{Binding SongsCommand}" Width="70" Height="45"></Button>
         </StackPanel>

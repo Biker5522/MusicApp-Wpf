@@ -22,6 +22,7 @@ namespace MusicApp.Services
 
         public async Task CreateSong(Song Song)
         {
+            //Validate if Album Band and Genre Exists
             if (await AlbumValidator(Song.AlbumId)) throw new Exception("zle");
             if (await BandValidator(Song.BandId)) throw new Exception("zle");
             if (await GenreValidator(Song.GenreId)) throw new Exception("zle");

@@ -19,6 +19,7 @@ namespace MusicApp.Services
         }
         public async Task CreateAlbum(Album album)
         {
+            //Validate if Band exists
             if (await AlbumValidator(album.BandId)) throw new Exception("zle");
 
             using (MusicAppDbContext context = _dbContextFactory.CreateDbContext())
